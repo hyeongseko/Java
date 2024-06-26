@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberTest">
+
+
+
+	<select id="selectAllBoard" resultType="homework10.vo.BoardVO">
+		select board_no boardNo,
+		board_title boardTitle,
+		board_writer boardWriter,
+		board_date boarDate,
+		board_content boardContent from JDBC_BOARD
+	</select>
+
+	<select id="insertBoard" resultType="homework10.vo.BoardVO">
+		insert into
+		jdbc_board(board_no, board_title, board_writer, board_date,
+		board_content)
+		values(BOARD_SEQ.NEXTVAL,#{boardTitle},#{boardWriter},sysdate,#{boardContent})
+	</select>
+
+	<delete id="deleteBoard" parameterType="String">
+		delete from JDBC_BOARD
+		where board_no = #{boardNo}
+	</delete>
+
+	<insert id="updateBoard" parameterType="homework10.vo.BoardVO">
+		update jdbc_board
+		set
+		BOARD_TITLE=#{boardTitle}, BOARD_WRITER=#{boardWriter}, BOARD_DATE =
+		sysdate, BOARD_CONTENT=#{boardContent} where BOARD_NO = #{boardNo}
+	</insert>
+
+
+	<select id="selectBoard" resultType="homework10.vo.BoardVO">
+		select board_no boardNo,
+		board_title boardTitle,
+		board_writer boardWriter,
+		board_date boarDate,
+		board_content boardContent from JDBC_BOARD
+		where BOARD_Writer =
+		#{boardWriter}
+	</select>
+</mapper>
