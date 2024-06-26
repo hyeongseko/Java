@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<script>
+  // setTimeout(fn,ms)
+  // 한번만 지정된 시간이 지나면 함수 호출
+  // setTimeout(function () { alert("setTimeout") }, 2000);
+  setTimeout(f_fnc, 2000, '타이머', ' 함수');
+
+  // setInterval(fn,ms)
+  setInterval(function () { console.log("setInterval") }, 1000)
+
+  function f_fnc(param1, param2) {
+    alert("함수" + param1 + param2);
+  }
+</script>

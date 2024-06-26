@@ -1,0 +1,1 @@
+2024-06-12 14:36:19.423 [main] DEBUG - Query :  insert into mymember(mem_id, mem_name,mem_tel,mem_addr)  values(?,?,?,?) 

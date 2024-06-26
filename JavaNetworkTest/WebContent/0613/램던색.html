@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>랜덤색 표현</div>
+  <input type="button" id="ranColor" value="랜덤색">
+  <input type="button" value="setTimeout">
+  <input type="button" value="setInterVal">
+  <input type="button" value="중지">
+
+  <script src="/js/random.js"></script>
+  <script>
+    let ranColor;
+    let timer;
+    document.querySelector('#ranColor').addEventListener('click', ranColor = function () {
+      let v_disp = document.querySelector('div');
+
+      // 10진수 랜덤 색 생성rgb(0~255, 0~255, 0~255)
+      let random10 = [], random16 = [];
+      for (let i = 0; i < 3; i++) {
+        random10[i] = f_random(0, 255);
+        random16[i] = f_random(0, 255).toString(16);
+      }
+      console.log(random10, " | ", random16, " | ", random16.join(""));
+
+      // 영역에 색상 표현
+      // 배경색
+      v_disp.style.backgroundColor = "rgb(" + random10 + ")";
+      // 정보에 ','같이 삽입시 생표현 불가
+      // 배열을 구분자 없이 문자열로 합침
+      // 글자색
+      v_disp.style.color = "#" + random16.join("");
+      //재귀호출
+      timer = setTimeout(ranColor, 1000);
+    });
+
+    // 타이머 함수 실행
+
+
+    // 타이머 함수 활용
+    // SetTimeout은 함수 실행시간과는 별개로 고정적인 딜레이 보장
+    document.querySelector('input:nth-of-type(2)').addEventListener('click', function () {
+      setTimeout(ranColor, 1500);
+      // 실행 후 비활성 처리
+      // document.querySelector('input:nth-of-type(2)').disabled = true;
+      document.querySelector('input:nth-of-type(2)').setAttribute('disabled', 'true');
+    });
+
+    // setInterval은 지정된 delay에 함수의 실행시간이 포함
+    // 함수 실행시간이 길어질 경우 실행간 delay없이
+    //  다음 함수가 바로 실행될 확률이 높음
+    document.querySelector('[value="setInterVal"]').addEventListener('click', function () {
+      setInterval(ranColor, 1500);
+    });
+
+    document.querySelector('input:last-of-type').addEventListener('click', function () {
+      clearTimeout(timer);
+
+      // 비활성 처리한 버튼 다시 복구
+      // document.querySelector('input:nth-of-type(2)').disabled = false;
+      // setTimoue이 비활성화가 안됨
+      document.querySelector('input:nth-of-type(2)').setAttribute('disabled', false); 
+      document.querySelector('input:nth-of-type(2)').removeAttribute('disabled');
+
+    });
+  </script>
+</body>
+
+</html>
